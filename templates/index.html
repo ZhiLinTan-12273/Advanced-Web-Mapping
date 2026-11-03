@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dublin Cultural Heritage & Urban Exploration Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=2.0">
+</head>
+<body>
+
+    <div id="sidebar">
+        <div class="brand-header">
+            <h2>Dublin Exploration</h2>
+            <p>Cultural Heritage & Spatial Analysis</p>
+        </div>
+
+        <button class="admin-btn" onclick="window.open('/admin/', '_blank')">Admin Dashboard</button>
+
+        <div class="section-title">Search Places</div>
+        <input type="text" id="searchInput" placeholder="Search by name, address..." />
+        <div id="searchResults"></div>
+
+        <div class="section-title">Spatial Filters</div>
+        <div class="filter-grid">
+            <div>
+                <label>District</label>
+                <select id="districtFilter">
+                    <option value="none">All Dublin</option>
+                </select>
+            </div>
+            <div>
+                <label>Category</label>
+                <select id="categoryFilter">
+                    <option value="all">All</option>
+                    <option value="restaurant">Food & Pub</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="park">Parks</option>
+                    <option value="museum">Museums</option>
+                    <option value="attraction">Attraction</option>
+                    <option value="monument">Landmark</option>
+                    <option value="transport">Transport</option>
+                    <option value="education">Campus</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section-title">Selected Search Center</div>
+        <div id="selectedInfo" class="selected-box">
+            <b>Target:</b> The Spire (Default)<br>
+            <b>Lat/Lng:</b> 53.3498, -6.2603
+        </div>
+
+        <div class="btn-group">
+            <button class="action-btn" onclick="searchAroundSelected()">1.5 km Search</button>
+            <button class="reset" onclick="resetAll()">Reset All</button>
+        </div>
+
+        <div class="section-title">System Status</div>
+        <div id="status">Ready</div>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom Map JS (加上版本參數 ?v=2.0) -->
+    <script src="{% static 'js/map.js' %}?v=2.0"></script>
+</body>
+</html>
